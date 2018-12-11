@@ -10,7 +10,7 @@ Module Program
         Dim userInput As String
         Dim studentChoice1(totalStudents - 1) As String
         Dim studentChoice2(totalStudents - 1) As String
-        Dim subjectNames() As String = {"physics", "chemistry", "history", "geography", "computer science"}
+        Dim subjectNames() As String = {"Physics", "Chemistry", "History", "Geography", "Computer science"}
         Dim subjectCounts(4) As Integer 'Passive count for task 1 only
 
         'TASK 1 - INPUT STUDENT INFO AND COUNT HOW MANY STUDENTS HAVE CHOSEN EACH SUBJECT
@@ -41,8 +41,9 @@ Module Program
         Next
 
         'Outputting each subjects counts
+        Console.WriteLine("Subject choice totals:")
         For i = 0 To subjectCounts.Length - 1
-            Console.WriteLine("Amount of people who chose " & subjectNames(i) & ": " & subjectCounts(i))
+            Console.WriteLine(subjectNames(i) & ": " & subjectCounts(i))
         Next
 
         'TASK 2 - ALLOCATE STUDENTS TO GROUPS AND IDENTIFY PROBLEMS
@@ -85,7 +86,7 @@ Module Program
             'Hypothetical and unused groups will be generated if undersubscription happens, I don't want to handle that.
             'If oversubscription happens, studentSubjectsConfirmed will not be incremented, this will lead that students index to be 1 or 0, which will be outputted later.
 
-            If studentChoice1(i) = "physics" Then
+            If studentChoice1(i) = subjectNames(0) Then
                 If physCount <= maxStudentsPerGroup - 1 Then
                     physGroup1(physCount) = studentNames(i)
                     If subjectCounts(0) >= 10 Then
@@ -100,7 +101,7 @@ Module Program
                     physCount += 1
                 End If
             End If
-            If studentChoice2(i) = "physics" Then
+            If studentChoice2(i) = subjectNames(0) Then
                 If physCount <= maxStudentsPerGroup - 1 Then
                     physGroup1(physCount) = studentNames(i)
                     If subjectCounts(0) >= 10 Then
@@ -117,7 +118,7 @@ Module Program
 
             End If
 
-            If studentChoice1(i) = "chemistry" Then
+            If studentChoice1(i) = subjectNames(1) Then
                 If chemCount <= maxStudentsPerGroup - 1 Then
                     chemGroup1(chemCount) = studentNames(i)
                     If subjectCounts(1) >= 10 Then
@@ -133,7 +134,7 @@ Module Program
                 End If
 
             End If
-            If studentChoice2(i) = "chemistry" Then
+            If studentChoice2(i) = subjectNames(1) Then
                 If chemCount <= maxStudentsPerGroup - 1 Then
                     chemGroup1(chemCount) = studentNames(i)
                     If subjectCounts(1) >= 10 Then
@@ -150,7 +151,7 @@ Module Program
 
             End If
 
-            If studentChoice1(i) = "history" Then
+            If studentChoice1(i) = subjectNames(2) Then
                 If histCount <= maxStudentsPerGroup - 1 Then
                     histGroup1(histCount) = studentNames(i)
                     If subjectCounts(2) >= 10 Then
@@ -166,7 +167,7 @@ Module Program
                 End If
 
             End If
-            If studentChoice2(i) = "history" Then
+            If studentChoice2(i) = subjectNames(2) Then
                 If histCount <= maxStudentsPerGroup - 1 Then
                     histGroup1(histCount) = studentNames(i)
                     If subjectCounts(2) >= 10 Then
@@ -183,7 +184,7 @@ Module Program
 
             End If
 
-            If studentChoice1(i) = "geography" Then
+            If studentChoice1(i) = subjectNames(3) Then
                 If geoCount <= maxStudentsPerGroup - 1 Then
                     geoGroup1(geoCount) = studentNames(i)
                     If subjectCounts(3) >= 10 Then
@@ -199,7 +200,7 @@ Module Program
                 End If
 
             End If
-            If studentChoice2(i) = "geography" Then
+            If studentChoice2(i) = subjectNames(3) Then
                 If geoCount <= maxStudentsPerGroup - 1 Then
                     geoGroup1(geoCount) = studentNames(i)
                     If subjectCounts(3) >= 10 Then
@@ -216,7 +217,7 @@ Module Program
 
             End If
 
-            If studentChoice1(i) = "computer science" Then
+            If studentChoice1(i) = subjectNames(4) Then
                 If csCount <= maxStudentsPerGroup - 1 Then
                     csGroup1(csCount) = studentNames(i)
                     If subjectCounts(4) >= 10 Then
@@ -232,7 +233,7 @@ Module Program
                 End If
 
             End If
-            If studentChoice2(i) = "computer science" Then
+            If studentChoice2(i) = subjectNames(4) Then
                 If csCount <= maxStudentsPerGroup - 1 Then
                     csGroup1(csCount) = studentNames(i)
                     If subjectCounts(4) >= 10 Then
@@ -252,35 +253,15 @@ Module Program
         Next
 
         'Identifying oversubscription and undersubscription, while also outputting subject groups.
-        If subjectCounts(0) < 10 Then
-            Console.WriteLine("Physics will not run this year due to undersubscription")
-        ElseIf subjectCounts(0) > 40 Then
-            Console.WriteLine("Physics is oversubscribed and some students will not be able to join.")
-        End If
+        For i = 0 To subjectCounts.Length - 1
 
-        If subjectCounts(1) < 10 Then
-            Console.WriteLine("Chemistry will not run this year due to undersubscription")
-        ElseIf subjectCounts(1) > 40 Then
-            Console.WriteLine("Chemistry is oversubscribed and some students will not be able to join.")
-        End If
+            If subjectCounts(i) < 10 Then
+                Console.WriteLine(subjectNames(i) & " will not run this year due to undersubscription")
+            ElseIf subjectCounts(i) > 40 Then
+                Console.WriteLine(subjectNames(i) & " is oversubscribed and some students will not be able to join.")
+            End If
 
-        If subjectCounts(2) < 10 Then
-            Console.WriteLine("History will not run this year due to undersubscription")
-        ElseIf subjectCounts(2) > 40 Then
-            Console.WriteLine("History is oversubscribed and some students will not be able to join.")
-        End If
-
-        If subjectCounts(3) < 10 Then
-            Console.WriteLine("Geography will not run this year due to undersubscription")
-        ElseIf subjectCounts(3) > 40 Then
-            Console.WriteLine("Geography is oversubscribed and some students will not be able to join.")
-        End If
-
-        If subjectCounts(4) < 10 Then
-            Console.WriteLine("Computer Science will not run this year due to undersubscription")
-        ElseIf subjectCounts(4) > 40 Then
-            Console.WriteLine("Computer Science is oversubscribed and some students will not be able to join.")
-        End If
+        Next
 
         If physCount >= 10 Then
             Console.WriteLine("Physics Group 1:")
@@ -347,6 +328,7 @@ Module Program
 
         End If
 
+        'Using studentSubjectsConfirmed to identify unallocated students.
         Console.WriteLine("Students who have been allocated only 1 subject: ")
         For j = 0 To studentSubjectsConfirmed.Length - 1
             If studentSubjectsConfirmed(j) = 1 Then
